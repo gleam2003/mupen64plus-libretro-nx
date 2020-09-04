@@ -235,6 +235,19 @@ else ifneq (,$(findstring odroid,$(platform)))
 
    COREFLAGS += -DOS_LINUX
    ASFLAGS = -f elf -d ELF_TYPE
+   
+# orangepi
+else ifneq (,$(findstring orangepi,$(platform)))
+   TARGET := $(TARGET_NAME)_libretro.so
+   LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined
+   GLES = 1
+   GL_LIB := -lGLESv2
+   CPUFLAGS += -marm -mfloat-abi=hard
+   HAVE_NEON = 1
+   WITH_DYNAREC=arm
+   CPUFLAGS += -mcpu=cortex-a7 -mfpu=neon
+   COREFLAGS += -DOS_LINUX
+   ASFLAGS = -f elf -d ELF_TYPE
 
 # Amlogic S905/S905X/S912 (AMLGXBB/AMLGXL/AMLGXM) e.g. Khadas VIM1/2 / S905X2 (AMLG12A) & S922X/A311D (AMLG12B) e.g. Khadas VIM3 - 32-bit userspace
 else ifneq (,$(findstring AMLG,$(platform)))

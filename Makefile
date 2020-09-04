@@ -245,7 +245,7 @@ else ifneq (,$(findstring orangepi,$(platform)))
    CPUFLAGS += -marm -mfloat-abi=hard
    HAVE_NEON = 1
    WITH_DYNAREC=arm
-   CPUFLAGS += -mcpu=cortex-a7 -mfpu=neon
+   CPUFLAGS += -mcpu=cortex-a7 -mfpu=neon-vfpv4
    COREFLAGS += -DOS_LINUX
    ASFLAGS = -f elf -d ELF_TYPE
 
